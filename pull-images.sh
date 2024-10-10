@@ -1,3 +1,7 @@
+singularity cache clean
+
+mkdir -p ./images
+
 # fsl:6.0.5
 singularity pull --dir ./images docker://mcin/fsl:6.0.5
 
