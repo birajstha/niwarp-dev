@@ -4,3 +4,9 @@ styx_tmp
 extra
 images
 data
+output
+cache
+.vscode
+C-PAC
+niwrap
+*.nii.gz
