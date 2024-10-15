@@ -14,12 +14,9 @@ set_global_runner(runner)
 
 # Now you can use any Styx functions as usual, and they will run in Singularity containers
 
-from niwrap import ants, afni
+from niwrap import ants, afni, fsl
 from nilearn.plotting import plot_anat
-import joblib
-
-cache_dir = './cache'
-memory = joblib.Memory(cache_dir, verbose=0)
+from nodeblocks.anat_preproc import anat_init
 
 input_image = "./data/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w.nii.gz"
 template_path = "./ants_template/oasis/T_template0.nii.gz"
@@ -27,16 +24,14 @@ mask_path= "./ants_template/oasis/T_template0_BrainCerebellumProbabilityMask.nii
 # niworkflows-ants registration mask (can be optional)
 regmask_path = "./ants_template/oasis/T_template0_BrainCerebellumRegistrationMask.nii.gz"
 
-out = ants.brain_extraction_sh(anatomical_image=input_image, 
-                               template=template_path, 
-                               probability_mask=mask_path, 
-                               output_prefix="ants-brain",
-                               runner=runner)
+from nipype import Workflow, Node, Function
+# out = anat_init(input_image, 1)
+# afni.v_3dinfo(dataset=[out])
 
-orientation = afni.v_3dinfo(dataset=[out.brain_extracted_image])
-
-print(orientation)
-# fig = plot_anat(out.brain_extracted_image, title="ants-brain-extraction", display_mode="ortho")
-# fig.savefig('ants_extracted-brain.png')
-# fig.close()
+wf = Workflow("anat_init")
+anat_init = Node(Function(input_names=["input_image", "pipe_num"], output_names=["out"], function=anat_init), name="anat_init")
+anat_init.inputs.input_image = input_image
+anat_init.inputs.pipe_num = 1
+wf.add_nodes([anat_init])
+wf.run()
 

@@ -16,21 +16,21 @@ set_global_runner(runner)
 from niwrap import fsl
 from nilearn.plotting import plot_anat
 
-bet_output = fsl.bet(
-    infile="./data/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w.nii.gz",
-    binary_mask=True,
-    runner=runner
-)
+# bet_output = fsl.bet(
+#     infile="./data/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w.nii.gz",
+#     binary_mask=True,
+#     runner=runner
+# )
 
 
-fig = plot_anat(bet_output.outfile, title="BET output", display_mode="ortho")
-fig.savefig('bet_output.png')
-fig.close()
+# fig = plot_anat(bet_output.outfile, title="BET output", display_mode="ortho")
+# fig.savefig('bet_output.png')
+# fig.close()
 
-fig = plot_anat("./data/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w.nii.gz", title="Original", display_mode="ortho")
-fig.savefig('original.png')
-fig.close()
+# fig = plot_anat("./data/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w.nii.gz", title="Original", display_mode="ortho")
+# fig.savefig('original.png')
+# fig.close()
 
 # Test another function
-# out = fsl.fslinfo(filename="./data/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w.nii.gz")
-# print(out)
+out = fsl.fslinfo(filename="./data/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w.nii.gz")
+print(out)
