@@ -24,14 +24,7 @@ mask_path= "./ants_template/oasis/T_template0_BrainCerebellumProbabilityMask.nii
 # niworkflows-ants registration mask (can be optional)
 regmask_path = "./ants_template/oasis/T_template0_BrainCerebellumRegistrationMask.nii.gz"
 
-from nipype import Workflow, Node, Function
-# out = anat_init(input_image, 1)
-# afni.v_3dinfo(dataset=[out])
+out = anat_init(input_image, 1)
+afni.v_3dinfo(dataset=[out])
 
-wf = Workflow("anat_init")
-anat_init = Node(Function(input_names=["input_image", "pipe_num"], output_names=["out"], function=anat_init), name="anat_init")
-anat_init.inputs.input_image = input_image
-anat_init.inputs.pipe_num = 1
-wf.add_nodes([anat_init])
-wf.run()
 
