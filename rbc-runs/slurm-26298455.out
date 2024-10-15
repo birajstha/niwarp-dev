@@ -22297,3 +22297,132 @@ Number of threads for ANTs: 2
 	 No resources available. Potential deadlock
 241015-20:42:01,366 nipype.workflow INFO:
 	 No resources available. Potential deadlock
+241015-20:42:03,368 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:05,370 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:07,91 nipype.workflow INFO:
+	 [Node] Finished "Functional_2mm_flirt", elapsed time 546.960654s.
+241015-20:42:07,365 nipype.workflow INFO:
+	 [Job 1822] Completed (cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nuisance_regressors_aCompCor_158.Functional_2mm_flirt).
+241015-20:42:07,378 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1758 jobs ready. Free memory (GB): 48.51/50.00, Free processors: 1/2.
+                     Currently running:
+                       * cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nuisance_regressors_36_parameter_158.Functional_2mm_flirt
+241015-20:42:08,374 nipype.workflow INFO:
+	 [Node] Setting-up "cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.create_func_to_T1wtemplate_xfm_141.fsl_reg_2_itk" in "/ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/create_func_to_T1wtemplate_xfm_141/_scan_REST_run-1/fsl_reg_2_itk".
+241015-20:42:08,385 nipype.workflow INFO:
+	 [Node] Executing "fsl_reg_2_itk" <nipype.interfaces.c3.C3dAffineTool>
+241015-20:42:09,373 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1757 jobs ready. Free memory (GB): 46.51/50.00, Free processors: 0/2.
+                     Currently running:
+                       * cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.create_func_to_T1wtemplate_xfm_141.fsl_reg_2_itk
+                       * cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nuisance_regressors_36_parameter_158.Functional_2mm_flirt
+241015-20:42:09,375 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:09,673 nipype.workflow INFO:
+	 [Node] Finished "fsl_reg_2_itk", elapsed time 1.016492s.
+241015-20:42:10,184 nipype.workflow INFO:
+	 [Node] Finished "Functional_2mm_flirt", elapsed time 551.886413s.
+241015-20:42:11,368 nipype.workflow INFO:
+	 [Job 1821] Completed (cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nuisance_regressors_36_parameter_158.Functional_2mm_flirt).
+241015-20:42:11,373 nipype.workflow INFO:
+	 [Job 1823] Completed (cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.create_func_to_T1wtemplate_xfm_141.fsl_reg_2_itk).
+241015-20:42:11,386 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1758 jobs ready. Free memory (GB): 49.03/50.00, Free processors: 2/2.
+241015-20:42:12,368 nipype.workflow INFO:
+	 [Node] Setting-up "cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.anat_to_func_linear_xfm_36_parameter_158" in "/ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_facesmatching_run-1/anat_to_func_linear_xfm_36_parameter_158".
+241015-20:42:12,372 nipype.workflow INFO:
+	 [Node] Setting-up "cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.anat_to_func_linear_xfm_aCompCor_158" in "/ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_facesmatching_run-1/anat_to_func_linear_xfm_aCompCor_158".
+241015-20:42:12,377 nipype.workflow INFO:
+	 [Node] Executing "anat_to_func_linear_xfm_36_parameter_158" <nipype.interfaces.fsl.utils.ConvertXFM>
+241015-20:42:12,380 nipype.workflow INFO:
+	 [Node] Executing "anat_to_func_linear_xfm_aCompCor_158" <nipype.interfaces.fsl.utils.ConvertXFM>
+241015-20:42:13,314 nipype.workflow INFO:
+	 [Node] Finished "anat_to_func_linear_xfm_36_parameter_158", elapsed time 0.667756s.
+241015-20:42:13,338 nipype.workflow INFO:
+	 [Node] Finished "anat_to_func_linear_xfm_aCompCor_158", elapsed time 0.687904s.
+241015-20:42:13,369 nipype.workflow INFO:
+	 [Job 1824] Completed (cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.anat_to_func_linear_xfm_36_parameter_158).
+241015-20:42:13,374 nipype.workflow INFO:
+	 [Job 1825] Completed (cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.anat_to_func_linear_xfm_aCompCor_158).
+241015-20:42:13,386 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1756 jobs ready. Free memory (GB): 49.03/50.00, Free processors: 2/2.
+241015-20:42:14,373 nipype.workflow INFO:
+	 [Node] Setting-up "cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nii_from-bold_to-T1w_mode-image_desc-linear_xfm_140" in "/ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_facesmatching_run-1/nii_from-bold_to-T1w_mode-image_desc-linear_xfm_140".
+241015-20:42:14,377 nipype.workflow INFO:
+	 [Node] Setting-up "cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.convert_bbr2itk_190" in "/ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_facesmatching_run-1/convert_bbr2itk_190".
+241015-20:42:15,373 nipype.workflow INFO:
+	 [Node] Executing "convert_bbr2itk_190" <CPAC.utils.interfaces.function.function.Function>
+241015-20:42:15,377 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1754 jobs ready. Free memory (GB): 45.03/50.00, Free processors: 0/2.
+                     Currently running:
+                       * cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nii_from-bold_to-T1w_mode-image_desc-linear_xfm_140
+                       * cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.convert_bbr2itk_190
+241015-20:42:15,381 nipype.workflow INFO:
+	 [Node] Executing "nii_from-bold_to-T1w_mode-image_desc-linear_xfm_140" <nipype.interfaces.utility.base.Rename>
+241015-20:42:15,386 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:15,669 nipype.workflow INFO:
+	 [Node] Finished "nii_from-bold_to-T1w_mode-image_desc-linear_xfm_140", elapsed time 0.001426s.
+241015-20:42:15,988 nipype.workflow INFO:
+	 [Node] Finished "convert_bbr2itk_190", elapsed time 0.367444s.
+241015-20:42:17,371 nipype.workflow INFO:
+	 [Job 1826] Completed (cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.convert_bbr2itk_190).
+241015-20:42:17,376 nipype.workflow INFO:
+	 [Job 1827] Completed (cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nii_from-bold_to-T1w_mode-image_desc-linear_xfm_140).
+241015-20:42:17,388 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1755 jobs ready. Free memory (GB): 49.03/50.00, Free processors: 2/2.
+241015-20:42:18,373 nipype.workflow INFO:
+	 [Node] Setting-up "cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nii_space-T1w_sbref_139" in "/ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_facesmatching_run-1/nii_space-T1w_sbref_139".
+241015-20:42:18,378 nipype.workflow INFO:
+	 [Node] Setting-up "cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nuisance_regressors_36_parameter_158.Functional_2mm_flirt" in "/ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/nuisance_regressors_36_parameter_158/_scan_facesmatching_run-1/Functional_2mm_flirt".
+241015-20:42:18,397 nipype.workflow INFO:
+	 [Node] Executing "nii_space-T1w_sbref_139" <nipype.interfaces.utility.base.Rename>
+241015-20:42:18,403 nipype.workflow INFO:
+	 [Node] Executing "Functional_2mm_flirt" <nipype.interfaces.fsl.preprocess.FLIRT>
+241015-20:42:18,663 nipype.workflow INFO:
+	 [Node] Finished "nii_space-T1w_sbref_139", elapsed time 0.001462s.
+241015-20:42:19,373 nipype.workflow INFO:
+	 [Job 1828] Completed (cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nii_space-T1w_sbref_139).
+241015-20:42:19,387 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1754 jobs ready. Free memory (GB): 48.51/50.00, Free processors: 1/2.
+                     Currently running:
+                       * cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nuisance_regressors_36_parameter_158.Functional_2mm_flirt
+241015-20:42:20,376 nipype.workflow INFO:
+	 [Node] Setting-up "cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nuisance_regressors_aCompCor_158.Functional_2mm_flirt" in "/ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/nuisance_regressors_aCompCor_158/_scan_facesmatching_run-1/Functional_2mm_flirt".
+241015-20:42:20,386 nipype.workflow INFO:
+	 [Node] Executing "Functional_2mm_flirt" <nipype.interfaces.fsl.preprocess.FLIRT>
+241015-20:42:21,381 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1753 jobs ready. Free memory (GB): 47.99/50.00, Free processors: 0/2.
+                     Currently running:
+                       * cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nuisance_regressors_aCompCor_158.Functional_2mm_flirt
+                       * cpac_pipeline_RBCv0_sub-PA001_ses-V1W1.nuisance_regressors_36_parameter_158.Functional_2mm_flirt
+241015-20:42:21,382 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:23,382 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:25,384 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:27,387 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:29,388 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:31,390 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:33,393 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:35,394 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:37,396 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:39,399 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:41,401 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:43,403 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:45,405 nipype.workflow INFO:
+	 No resources available. Potential deadlock
+241015-20:42:47,407 nipype.workflow INFO:
+	 No resources available. Potential deadlock
