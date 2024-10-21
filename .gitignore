@@ -12,3 +12,4 @@ niwrap
 *.nii.gz
 slurm-*
 niwrap
+output*

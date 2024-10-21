@@ -18,7 +18,6 @@ PIPELINE=/ocean/projects/med220004p/bshresth/projects/check_orientations/pipelin
 repo=/ocean/projects/med220004p/bshresth/projects/niwrap/C-PAC
 
 singularity run \
-    -B ${repo}/CPAC:/code/CPAC \
     -B $MED \
     -B $DATA:$DATA \
     -B $OUTPUT:$OUTPUT $IMAGE $DATA $OUTPUT participant \
@@ -26,7 +25,7 @@ singularity run \
     --n_cpus 2 \
     --mem_gb 50 \
     --skip_bids_validator \
-    --preconfig rbc-options \
+    --preconfig anat-only \
     --participant_label sub-PA001
 
 ### For testing pipeline
