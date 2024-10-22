@@ -78,7 +78,7 @@ antsRegistration \
     --interpolation LanczosWindowedSinc \
     --output [transform,transform_Warped.nii.gz]
 """
-def ants_registration(input_image, template_path, regmask_path):
+def ants_registration(input_image, template_path):
     out = ants.registration(collapse_output_transforms=0,
                             dimensionality=3,
                             initial_moving_transform=[template_path, input_image, 0],
