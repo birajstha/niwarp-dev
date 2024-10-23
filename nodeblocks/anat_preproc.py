@@ -25,12 +25,13 @@ def brain_mask_ants(input_image, template_path, mask_path):
 #     out = afni.v_3d_skull_strip(in_file=input_image)
 #     return out
 
-"""N4BiasFieldCorrection -d 3 
+
+def n4biasfieldcorrection(input_image):
+    """N4BiasFieldCorrection -d 3 
     --input-image sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample.nii.gz 
     --output sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample_corrected.nii.gz 
     --shrink-factor 2
-"""
-def n4biasfieldcorrection(input_image):
+    """
     out = ants.n4_bias_field_correction(input_image=input_image, 
                                         corrected_image_path="corrected.nii.gz",
                                         image_dimensionality=3, 
@@ -39,10 +40,11 @@ def n4biasfieldcorrection(input_image):
                                      )
     return out
 
-"""
-fast -t 1 -o segment -p -g -S 1 sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample_calc.nii.gz
-"""
+
 def fast(input_image):
+    """
+    fast -t 1 -o segment -p -g -S 1 sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample_calc.nii.gz
+    """
     out = fsl.fast(in_files=[input_image], 
                    out_basename="segment",
                    channels=1,

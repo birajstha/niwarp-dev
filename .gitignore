@@ -13,3 +13,6 @@ niwrap
 slurm-*
 niwrap
 output*
+rbc-runs
+oasis_data
+.pytest_cache

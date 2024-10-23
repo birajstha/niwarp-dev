@@ -26,3 +26,5 @@ wget  -P ./oasis_data https://figshare.com/ndownloader/files/3133832
 # unzip
 unzip ./oasis_data/3133832 -d ./oasis_data
 rm ./oasis_data/3133832
+
+singularity cache clean
