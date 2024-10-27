@@ -7,9 +7,15 @@ def auto_mask(input_bold):
     return out
 
 def average_bold(input_bold):
-    out = afni.v_3d_tstat(mean=True, in_file=input_bold, prefix="desc-mean_bold.nii.gz")
+    out = afni.v_3d_tstat(mean=True, in_file=input_bold, prefix="desc-mean_sbref.nii.gz")
     return out
 
-def motion_correction(input_bold):
-    out = afni.v_3dvolreg(in_file=input_bold, prefix="desc-mc_bold.nii.gz")
+def motion_correction(input_bold, base_file):
+    out = afni.v_3dvolreg(in_file=input_bold, 
+                          twopass=True,
+                          fourier=True,
+                          zpad=4,
+                          basefile=base_file,
+                          prefix="desc-mc_bold.nii.gz",
+                          maxdisp1d="desc-mc_maxdisp_bold.1D")
     return out

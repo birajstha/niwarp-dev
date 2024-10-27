@@ -31,12 +31,13 @@ input_bold = os.path.join(base,"data/neurocon/sub-control032014/func/sub-control
 from nodeblocks.func_preproc import auto_mask
 skull_stripped = auto_mask(input_bold)
 
-from nodeblocks.func_preproc import motion_correction
-mc = motion_correction(skull_stripped.brain_file)
-
 from nodeblocks.func_preproc import average_bold
-average = average_bold(mc.out_file)
+average = average_bold(skull_stripped.brain_file)
 
+from nodeblocks.func_preproc import motion_correction
+mc = motion_correction(skull_stripped.brain_file, average.out_file)
+
+mean = average_bold(mc.out_file)
 from nilearn.plotting import plot_anat
-fig = plot_anat(average.out_file, title="desc-brain_mask_bold", display_mode="ortho")
+fig = plot_anat(mean.out_file, title="desc-brain_mask_bold", display_mode="ortho")
 fig.savefig('desc-brain_mask_bold.png')
