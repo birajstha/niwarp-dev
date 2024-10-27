@@ -10,7 +10,7 @@ def anat_init(input_image, orientation="RPI"):
     return out
 
 def brain_mask_fsl(input_image):
-    out = fsl.bet(infile=input_image, binary_mask=True, )
+    out = fsl.bet(infile=input_image, binary_mask=True)
     return out
 
 def brain_mask_ants(input_image, template_path, mask_path):
