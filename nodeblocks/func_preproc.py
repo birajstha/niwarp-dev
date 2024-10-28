@@ -19,3 +19,11 @@ def motion_correction(input_bold, base_file):
                           prefix="desc-mc_bold.nii.gz",
                           maxdisp1d="desc-mc_maxdisp_bold.1D")
     return out
+
+def flirt_registration(input_image, reference_image):
+    out = fsl.flirt(in_file=input_image, 
+                    reference=reference_image, 
+                    cost="corratio",
+                    interp="linear",
+                    dof=6)
+    return out

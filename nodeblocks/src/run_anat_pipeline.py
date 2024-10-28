@@ -5,13 +5,15 @@ from styxdefs import set_global_runner
 from styxsingularity import SingularityRunner
 
 # Initialize the SingularityRunner with your container images
+base = "/ocean/projects/med220004p/bshresth/projects/niwrap-dev"
 runner = SingularityRunner(
     images={
-        "antsx/ants:v2.5.3" : "./images/ants_v2.5.3.sif",
-        "afni/afni_make_build:AFNI_24.2.06" : "./images/afni_24.2.06.sif",
-        "mcin/fsl:6.0.5": "./images/fsl_6.0.5.sif"
+        "antsx/ants:v2.5.3" : f"{base}/images/ants_v2.5.3.sif",
+        "afni/afni_make_build:AFNI_24.2.06" : f"{base}/images/afni_make_build_AFNI_24.2.06.sif",
+        "mcin/fsl:6.0.5": f"{base}/images/fsl_6.0.5.sif"
     }
 )
+
 
 # Set the global runner for Styx
 set_global_runner(runner)
@@ -21,7 +23,10 @@ set_global_runner(runner)
 
 
 import os
-base = "/ocean/projects/med220004p/bshresth/projects/niwrap"
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
+
 input_image = os.path.join(base,"data/neurocon/sub-control032014/anat/sub-control032014_T1w.nii.gz")
 
 ### Anat Init Block ###
@@ -42,12 +47,28 @@ skull_stripped_image = skull_stripped.outfile
 
 ### N4 Bias Field Correction Block ###
 from nodeblocks.anat_preproc import n4biasfieldcorrection
-out = n4biasfieldcorrection(skull_stripped_image)
+anat_preproc = n4biasfieldcorrection(skull_stripped_image)
 
 
 
-### Plotting the results ###
+
+
+input_bold = os.path.join(base,"data/neurocon/sub-control032014/func/sub-control032014_task-resting_run-1_bold.nii.gz")
+
+from nodeblocks.func_preproc import auto_mask
+skull_stripped = auto_mask(input_bold)
+
+from nodeblocks.func_preproc import average_bold
+average = average_bold(skull_stripped.brain_file)
+
+from nodeblocks.func_preproc import motion_correction
+mc = motion_correction(skull_stripped.brain_file, average.out_file)
+
+mean = average_bold(mc.out_file)
+
+from nodeblocks.func_preproc import flirt_registration
+flirt = flirt_registration(skull_stripped.brain_file, anat_preproc.corrected_image)
+
 from nilearn.plotting import plot_anat
-fig = plot_anat(out.corrected_image, title="Preproc_T1w_bet", display_mode="ortho")
-fig.savefig('preproc_T1w_bet.png')
-fig.close()
+fig = plot_anat(mean.out_file, title="desc-brain_mask_bold", display_mode="ortho")
+fig.savefig('desc-brain_mask_bold.png')
