@@ -1,0 +1,62 @@
+# Nodeblocks list in order for RBC pipeline
+
+anatomical_preproc
+- anat_init
+    3drefit -deoblique /ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output2/working/pipeline_cpac_anat/cpac_pipeline_cpac_anat_sub-PA001_ses-V1W1/anat_deoblique_0/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w.nii.gz
+    3dresample -orient RPI -prefix sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample.nii.gz -inset /ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output2/working/pipeline_cpac_anat/cpac_pipeline_cpac_anat_sub-PA001_ses-V1W1/anat_reorient_0/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w.nii.gz
+
+- acpc_alignment
+
+- brain_extraction 
+    - BET
+    bet sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample_corrected.nii.gz sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample_corrected_brain.nii.gz -f 0.50 -m -r 0 -R -g 0.00
+
+    3dcalc -a /ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output2/working/pipeline_cpac_anat/cpac_pipeline_cpac_anat_sub-PA001_ses-V1W1/anat_reorient_0/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample.nii.gz -b /ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output2/working/pipeline_cpac_anat/cpac_pipeline_cpac_anat_sub-PA001_ses-V1W1/anat_BET_skullstrip_50/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample_corrected_brain_mask.nii.gz -expr "a*step(b)" -prefix sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample_calc.nii.gz
+
+- n4_bias_field_correction
+    N4BiasFieldCorrection -d 3 --input-image /ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output2/working/pipeline_cpac_anat/cpac_pipeline_cpac_anat_sub-PA001_ses-V1W1/anat_reorient_0/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample.nii.gz --output sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample_corrected.nii.gz --shrink-factor 2
+
+segmentation
+    fast -t 1 -o segment -p -g -S 1 /ocean/projects/med220004p/bshresth/projects/niwrap/rbc-runs/output2/working/pipeline_cpac_anat/cpac_pipeline_cpac_anat_sub-PA001_ses-V1W1/segment_80/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample_calc.nii.gz
+
+functional_preproc
+- slice_timing_correction
+    Tshift
+- motion_correction
+    3dvolreg, mcflirt
+- distortion_correction
+    
+- functional_masking
+
+- generate_func_mean
+    <AFNI> TStat 
+
+- normalize_func
+    <FSL> ImageMaths 
+
+- coreg_prep
+    <ANTs> N4BiasFieldCorrection
+
+registration
+- anatomical_registration
+    - <ANTs> antsRegistration
+- functional_registration
+    -ANTs 
+
+nuisance_corrections
+- 2-nuisance_regression
+
+timeseries_extraction
+- connectivity_mattix
+
+amplitude_low_frequency_fluctuation
+- target_space: Native
+
+network_centrality
+- degree_centrality
+- eigenvector_centrality
+- local_functional_connectivity_density
+
+post_processing
+- spatial_smoothing
+- z-scoring
