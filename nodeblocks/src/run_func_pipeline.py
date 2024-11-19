@@ -56,10 +56,26 @@ from nilearn.plotting import plot_anat
 #     reference_image="/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_facesmatching_run-1/func_get_fmriprep_ref_84/ref_bold.nii.gz"
 #     )
 
-from nodeblocks.func_preproc import flirt_registration
-out = flirt_registration(
-    input_image="/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/brain_extraction_36/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample_calc.nii.gz", 
-    reference_image="/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/anat_reorient_0/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample.nii.gz"
-    )
+# from nodeblocks.func_preproc import flirt_registration
+# out = flirt_registration(
+#     input_image="/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/brain_extraction_36/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample_calc.nii.gz", 
+#     reference_image="/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/anat_reorient_0/sub-PA001_ses-V1W1_acq-MPR_rec-Norm_T1w_resample.nii.gz"
+#     )
+
+
+# from nodeblocks.func_preproc import afni_3dTproject
+# out = afni_3dTproject(input_image = "/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/func_despiked_template_212/vol0000_trans_merged_masked_despike.nii.gz", 
+#                        mask_image = "/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/align_template_mask_to_template_data_space-template_reg-aCompCor_228/MNI152_T1_1mm_brain_mask_resample_resample.nii.gz",
+#                        ort_file = "/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/nuisance_regressors_aCompCor_158/_scan_REST_run-1/build_nuisance_regressors/nuisance_regressors.1D"
+#                        )
+
+
+from nodeblocks.func_preproc import afni_3dROIstats
+out = afni_3dROIstats(
+    input_image="/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/func_slice_timing_correction_94/_scan_facesmatching_run-1/slice_timing/sub-PA001_ses-V1W1_task-facesmatching_run-1_bold_resample_calc_tshift.nii.gz",
+    mask_image= "/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/nuisance_regressors_36_parameter_158/_scan_facesmatching_run-1/GlobalSignal_union_masks/ref_bold_corrected_brain_mask_maths_mask.nii.gz"
+)
+
 fig = plot_anat(average_bold(out.out_file).out_file, title="desc-mcflirt", display_mode="ortho")
 fig.savefig('desc-mcflirt.png')
+

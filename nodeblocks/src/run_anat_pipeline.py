@@ -10,7 +10,7 @@ runner = SingularityRunner(
     images={
         "antsx/ants:v2.5.3" : f"{base}/images/ants_v2.5.3.sif",
         "afni/afni_make_build:AFNI_24.2.06" : f"{base}/images/afni_make_build_AFNI_24.2.06.sif",
-        "mcin/fsl:6.0.5": f"{base}/images/fsl_6.0.5.sif"
+        "brainlife/fsl:6.0.4-patched2": f"{base}/images/fsl_6.0.4-patched2.sif"
     }
 )
 
@@ -50,9 +50,6 @@ from nodeblocks.anat_preproc import n4biasfieldcorrection
 anat_preproc = n4biasfieldcorrection(skull_stripped_image)
 
 
-
-
-
 input_bold = os.path.join(base,"data/neurocon/sub-control032014/func/sub-control032014_task-resting_run-1_bold.nii.gz")
 
 from nodeblocks.func_preproc import auto_mask
@@ -65,9 +62,6 @@ from nodeblocks.func_preproc import motion_correction
 mc = motion_correction(skull_stripped.brain_file, average.out_file)
 
 mean = average_bold(mc.out_file)
-
-from nodeblocks.func_preproc import flirt_registration
-flirt = flirt_registration(skull_stripped.brain_file, anat_preproc.corrected_image)
 
 from nilearn.plotting import plot_anat
 fig = plot_anat(mean.out_file, title="desc-brain_mask_bold", display_mode="ortho")
