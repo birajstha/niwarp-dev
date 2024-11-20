@@ -94,7 +94,7 @@ def afni_3dROIstats(input_image, mask_image):
     /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/func_slice_timing_correction_94/_scan_facesmatching_run-1/slice_timing/sub-PA001_ses-V1W1_task-facesmatching_run-1_bold_resample_calc_tshift.nii.gz 
     > sub-PA001_ses-V1W1_task-facesmatching_run-1_bold_resample_calc_tshift_roistat.1D
     """
-    out = afni.v_3d_roistats(format1D=True,
+    out = afni.v_3d_roistats(format1_d=True,
                             mask=mask_image,
                             in_file=input_image,
                             out_file="desc-roi_stats.1D")
