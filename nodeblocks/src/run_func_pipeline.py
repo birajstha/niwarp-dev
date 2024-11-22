@@ -83,8 +83,24 @@ from nodeblocks.func_preproc import average_bold
 # fig = plot_anat(average_bold(out.out_file).out_file, title="desc-3dROIstats", display_mode="ortho")
 # fig.savefig('desc-3dROIstats.png')
 
-from nodeblocks.func_preproc import afni_3dTshift
-out = afni_3dTshift(input_image = "/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/func_reorient_2/sub-PA001_ses-V1W1_task-REST_run-1_bold_resample.nii.gz" ,
-                    tr=0.8)
-fig = plot_anat(average_bold(out.out_file).out_file, title="desc-3dTshift", display_mode="ortho")
+# from nodeblocks.func_preproc import afni_3dTshift
+# out = afni_3dTshift(input_image = "/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/func_reorient_2/sub-PA001_ses-V1W1_task-REST_run-1_bold_resample.nii.gz" ,
+#                     tpattern= "alt+z",
+#                     tr=0.8)
+
+# from nodeblocks.func_preproc import fsl_fslmaths
+# out = fsl_fslmaths(inputs = ["/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/skullstrip_first_pass_104/ref_bold_corrected_brain_mask.nii.gz",
+#                              "/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/skullstrip_second_pass_104/uni_mask.nii.gz"],
+#                     operation = "mul")
+
+from nodeblocks.func_preproc import afni_3dBlurToFWHM
+out = afni_3dBlurToFWHM(input_image = "/ocean/projects/med220004p/rupprech/ecpac_runs/base_rbc-2/rbc-options/sub-NDARINV2VY7YYNW/wd/pipeline_RBCv0/cpac_sub-NDARINV2VY7YYNW_ses-baselineYear1Arm1/reho_289/_scan_rest_run-01/reho_map/ReHo.nii.gz",
+                        mask_image = "/ocean/projects/med220004p/rupprech/ecpac_runs/base_rbc-2/rbc-options/sub-NDARINV2VY7YYNW/wd/pipeline_RBCv0/cpac_sub-NDARINV2VY7YYNW_ses-baselineYear1Arm1/_scan_rest_run-01/applyxfm_deriv_mask_to_standard_189/ref_bold_corrected_brain_mask_maths_trans.nii.gz",
+                        fwhm = 6.000000)
+
+# for 3d image
+#fig = plot_anat(out.out_file, title="desc-3dBlurToFWHM", display_mode="ortho")
+
+# for 4d image
+#fig = plot_anat(average_bold(out.out_file).out_file, title="desc-3dTshift", display_mode="ortho")
 fig.savefig('desc-3dTshift.png')
