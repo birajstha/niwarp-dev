@@ -100,7 +100,7 @@ def afni_3dROIstats(input_image, mask_image):
                             out_file="desc-roi_stats.1D")
     return out
 
-def afni_3dTshift(input_image, tr):
+def afni_3dTshift(input_image, tpattern, tr):
     """
     3dTshift -prefix sub-PA001_ses-V1W1_task-facesmatching_run-1_bold_resample_calc_tshift.nii.gz 
     -tpattern 
@@ -109,7 +109,39 @@ def afni_3dTshift(input_image, tr):
     /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/func_slice_timing_correction_94/_scan_facesmatching_run-1/slice_timing/sub-PA001_ses-V1W1_task-facesmatching_run-1_bold_resample_calc.nii.gz
     """
     out = afni.v_3d_tshift(in_file=input_image,
-                            tpattern="desc-tpattern.txt",
+                            tpattern=tpattern,
                             tr=tr,
                             prefix="desc-tshift.nii.gz")
     return out
+
+def fsl_fslmaths(inputs, operation):
+    """
+    fslmaths /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/skullstrip_first_pass_104/ref_bold_corrected_brain_mask.nii.gz 
+    -mul /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/skullstrip_second_pass_104/uni_mask.nii.gz 
+    -seed 77742777 
+    /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/combine_masks_104/ref_bold_corrected_brain_mask_maths.nii.gz
+    """
+    out = fsl.fslmaths(input_files=inputs,
+                        operations=operation,
+                        output="desc-maths.nii.gz")
+    return out
+
+def afni_3dBlurToFWHM(input_image, mask_image, fwhm):
+    """
+    3dBlurToFWHM -FWHM 6.000000 
+    -input /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/reho_290/_scan_REST_run-1/reho_map/ReHo.nii.gz 
+    -mask /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/applyxfm_deriv_mask_to_standard_190/ref_bold_corrected_brain_mask_maths_trans.nii.gz 
+    -prefix ReHo_afni.nii.gz
+
+    another one
+    3dBlurToFWHM -FWHM 6.000000 
+    -input /ocean/projects/med220004p/rupprech/ecpac_runs/base_rbc-2/rbc-options/sub-NDARINV2VY7YYNW/wd/pipeline_RBCv0/cpac_sub-NDARINV2VY7YYNW_ses-baselineYear1Arm1/reho_289/_scan_rest_run-01/reho_map/ReHo.nii.gz 
+    -mask /ocean/projects/med220004p/rupprech/ecpac_runs/base_rbc-2/rbc-options/sub-NDARINV2VY7YYNW/wd/pipeline_RBCv0/cpac_sub-NDARINV2VY7YYNW_ses-baselineYear1Arm1/_scan_rest_run-01/applyxfm_deriv_mask_to_standard_189/ref_bold_corrected_brain_mask_maths_trans.nii.gz 
+    -prefix ReHo_afni.nii.gz
+    """
+    out = afni.v_3d_blur_to_fwhm(fwhm=fwhm,
+                            in_file=input_image,
+                            mask=mask_image,
+                            prefix="desc-ReHo.nii.gz")
+    return out
+
