@@ -99,3 +99,17 @@ def afni_3dROIstats(input_image, mask_image):
                             in_file=input_image,
                             out_file="desc-roi_stats.1D")
     return out
+
+def afni_3dTshift(input_image, tr):
+    """
+    3dTshift -prefix sub-PA001_ses-V1W1_task-facesmatching_run-1_bold_resample_calc_tshift.nii.gz 
+    -tpattern 
+    @/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_facesmatching_run-1/bold_scan_params_sub-PA001_ses-V1W1/tpattern.txt 
+    -TR 0.8s 
+    /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/func_slice_timing_correction_94/_scan_facesmatching_run-1/slice_timing/sub-PA001_ses-V1W1_task-facesmatching_run-1_bold_resample_calc.nii.gz
+    """
+    out = afni.v_3d_tshift(in_file=input_image,
+                            tpattern="desc-tpattern.txt",
+                            tr=tr,
+                            prefix="desc-tshift.nii.gz")
+    return out
