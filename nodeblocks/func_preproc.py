@@ -170,11 +170,11 @@ def afni_3dDespike(input_image):
     out = afni.v_3d_despike(prefix="desc-despike.nii.gz", in_file=input_image)
     return out
 
-def fsl_convert_xfm():
+def fsl_convert_xfm(input_file):
     """
     convert_xfm -omat /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/anat_to_func_linear_xfm_aCompCor_158/uni_masked_flirt_inv.mat 
     -inverse 
     /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/func_to_anat_bbreg_132/_scan_REST_run-1/bbreg_func_to_anat/uni_masked_flirt.mat
     """
-    out = fsl.convert_xfm(out_file="desc-flirt_inv.mat", invert_xfm=True, in_file="desc-flirt.mat")
+    out = fsl.convert_xfm(out_file="desc-flirt_inv.mat", invert_xfm=True, in_file=input_file)
     return out
