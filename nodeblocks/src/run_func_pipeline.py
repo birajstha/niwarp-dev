@@ -1,7 +1,7 @@
 ########################################################################################
 # Required by styx
 ########################################################################################
-from styxdefs import set_global_runner, DummyRunner
+from styxdefs import set_global_runner
 from styxsingularity import SingularityRunner
 
 import os
@@ -98,11 +98,15 @@ from nodeblocks.func_preproc import average_bold
 #                         mask_image = "/ocean/projects/med220004p/rupprech/ecpac_runs/base_rbc-2/rbc-options/sub-NDARINV2VY7YYNW/wd/pipeline_RBCv0/cpac_sub-NDARINV2VY7YYNW_ses-baselineYear1Arm1/_scan_rest_run-01/applyxfm_deriv_mask_to_standard_189/ref_bold_corrected_brain_mask_maths_trans.nii.gz",
 #                         fwhm = 6.000000)
 
-from nodeblocks.func_preproc import fsl_fslstats
-out = fsl_fslstats(
-    input_image="/ocean/projects/med220004p/rupprech/ecpac_runs/base_rbc-2/rbc-options/sub-NDARINV2VY7YYNW/wd/pipeline_RBCv0/cpac_sub-NDARINV2VY7YYNW_ses-baselineYear1Arm1/space-template_lfcdw_smooth_AFNI_303/_scan_rest_run-01/_fwhm_6/smooth/local_functional_connectivity_density_Weighted_afni.nii.gz",
-    mask_image="/ocean/projects/med220004p/bshresth/projects/niwrap-dev/cpac_templates/Mask_ABIDE_85Percent_GM.nii.gz")
+# from nodeblocks.func_preproc import fsl_fslstats
+# out = fsl_fslstats(
+#     input_image="/ocean/projects/med220004p/rupprech/ecpac_runs/base_rbc-2/rbc-options/sub-NDARINV2VY7YYNW/wd/pipeline_RBCv0/cpac_sub-NDARINV2VY7YYNW_ses-baselineYear1Arm1/space-template_lfcdw_smooth_AFNI_303/_scan_rest_run-01/_fwhm_6/smooth/local_functional_connectivity_density_Weighted_afni.nii.gz",
+#     mask_image="/ocean/projects/med220004p/bshresth/projects/niwrap-dev/cpac_templates/Mask_ABIDE_85Percent_GM.nii.gz")
 
+from nodeblocks.func_preproc import afni_3dDespike
+out = afni_3dDespike(
+    input_image="/ocean/projects/med220004p/rupprech/ecpac_runs/base_rbc-2/rbc-options/sub-NDARINV2VY7YYNW/wd/pipeline_RBCv0/cpac_sub-NDARINV2VY7YYNW_ses-baselineYear1Arm1/_scan_rest_run-01/func_despiked_template_211/vol0000_trans_merged_masked_despike.nii.gz"
+)
 
 # for 3d image
 #fig = plot_anat(out.out_file, title="desc-3dBlurToFWHM", display_mode="ortho")
