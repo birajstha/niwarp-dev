@@ -161,3 +161,20 @@ def fsl_fslstats(input_image, mask_image):
                         index_mask=mask_image,
                         std_dev_flag=True)
     return out
+
+def afni_3dDespike(input_image):
+    """
+    3dDespike -prefix vol0000_trans_merged_masked_despike.nii.gz 
+    /ocean/projects/med220004p/rupprech/ecpac_runs/base_rbc-2/rbc-options/sub-NDARINV2VY7YYNW/wd/pipeline_RBCv0/cpac_sub-NDARINV2VY7YYNW_ses-baselineYear1Arm1/_scan_rest_run-01/func_despiked_template_211/vol0000_trans_merged_masked.nii.gz
+    """
+    out = afni.v_3d_despike(prefix="desc-despike.nii.gz", in_file=input_image)
+    return out
+
+def fsl_convert_xfm():
+    """
+    convert_xfm -omat /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/anat_to_func_linear_xfm_aCompCor_158/uni_masked_flirt_inv.mat 
+    -inverse 
+    /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/func_to_anat_bbreg_132/_scan_REST_run-1/bbreg_func_to_anat/uni_masked_flirt.mat
+    """
+    out = fsl.convert_xfm(out_file="desc-flirt_inv.mat", invert_xfm=True, in_file="desc-flirt.mat")
+    return out
