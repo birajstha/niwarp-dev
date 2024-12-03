@@ -178,3 +178,13 @@ def fsl_convert_xfm(input_file):
     """
     out = fsl.convert_xfm(out_file="desc-flirt_inv.mat", invert_xfm=True, in_file=input_file)
     return out
+
+def afni_3dBandpass(highpass, lowpass, input_image):
+    """
+    3dBandpass -prefix residual_filtered.nii.gz 
+    0.010000 
+    0.100000 
+    /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/alff_falff_264/_scan_REST_run-1/_hp_0.01/_lp_0.1/bandpass_filtering/residuals.nii.gz
+    """
+    out = afni.v_3d_bandpass(prefix="desc-residual_filtered.nii.gz", lowpass=lowpass, highpass=highpass, in_file=input_image)
+    return out
