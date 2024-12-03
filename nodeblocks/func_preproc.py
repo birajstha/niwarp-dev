@@ -188,3 +188,12 @@ def afni_3dBandpass(highpass, lowpass, input_image):
     """
     out = afni.v_3d_bandpass(prefix="desc-residual_filtered.nii.gz", lowpass=lowpass, highpass=highpass, in_file=input_image)
     return out
+
+def fsl_fslmerge(input_files: list):
+    """
+    fslmerge -t vol0000_trans_merged.nii.gz 
+    ../applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_0/vol0000_trans.nii.gz 
+    ../applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_1/vol0001_trans.nii.gz
+    """
+    out = fsl.fslmerge(merge_time = True, output_file="desc-merged.nii.gz", input_files=input_files)
+    return out    
