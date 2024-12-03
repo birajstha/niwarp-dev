@@ -117,13 +117,18 @@ from nodeblocks.func_preproc import average_bold
 #     lowpass=0.1,
 #     input_image="/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/alff_falff_264/_scan_REST_run-1/_hp_0.01/_lp_0.1/bandpass_filtering/residual_filtered.nii.gz")
 
-from nodeblocks.func_preproc import fsl_fslmerge
-dir = "/ocean/projects/med220004p/rupprech/ecpac_runs/base_rbc-2/rbc-options/sub-NDARINV2VY7YYNW/wd/pipeline_RBCv0/cpac_sub-NDARINV2VY7YYNW_ses-baselineYear1Arm1/_scan_rest_run-01"
-out = fsl_fslmerge(input_files = [os.path.join(dir, "applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_1/vol0001_trans.nii.gz"),
-                                  os.path.join(dir, "applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_2/vol0002_trans.nii.gz"),
-                                  os.path.join(dir, "applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_3/vol0003_trans.nii.gz"),
-                                  os.path.join(dir, "applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_4/vol0004_trans.nii.gz"),
-                                  os.path.join(dir, "applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_5/vol0005_trans.nii.gz")])
+# from nodeblocks.func_preproc import fsl_fslmerge
+# dir = "/ocean/projects/med220004p/rupprech/ecpac_runs/base_rbc-2/rbc-options/sub-NDARINV2VY7YYNW/wd/pipeline_RBCv0/cpac_sub-NDARINV2VY7YYNW_ses-baselineYear1Arm1/_scan_rest_run-01"
+# out = fsl_fslmerge(input_files = [os.path.join(dir, "applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_1/vol0001_trans.nii.gz"),
+#                                   os.path.join(dir, "applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_2/vol0002_trans.nii.gz"),
+#                                   os.path.join(dir, "applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_3/vol0003_trans.nii.gz"),
+#                                   os.path.join(dir, "applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_4/vol0004_trans.nii.gz"),
+#                                   os.path.join(dir, "applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_5/vol0005_trans.nii.gz")])
+
+
+from nodeblocks.func_preproc import afni_3dUnifize
+out = afni_3dUnifize(cl_frac=0.2, rbt=[18.3, 65.0, 90.0],
+                     input_image="/ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/unifize_104/uni.nii.gz")
 
 # for 3d image
 #fig = plot_anat(out.out_file, title="desc-3dBlurToFWHM", display_mode="ortho")

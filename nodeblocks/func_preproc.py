@@ -192,8 +192,19 @@ def afni_3dBandpass(highpass, lowpass, input_image):
 def fsl_fslmerge(input_files: list):
     """
     fslmerge -t vol0000_trans_merged.nii.gz 
-    ../applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_0/vol0000_trans.nii.gz 
-    ../applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_1/vol0001_trans.nii.gz
+    ../applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_1/vol0001_trans.nii.gz 
+    ../applyxfm_derivfunc_to_standard_189_/mapflow/_applyxfm_derivfunc_to_standard_189_2/vol0002_trans.nii.gz
     """
     out = fsl.fslmerge(merge_time = True, output_file="desc-merged.nii.gz", input_files=input_files)
     return out    
+
+def afni_3dUnifize(cl_frac, rbt, input_image):
+    """
+    3dUnifize -clfrac 0.2 
+    -rbt 18.3 65.0 90.0 
+    -prefix uni.nii.gz 
+    -T2 
+    -input /ocean/projects/med220004p/bshresth/projects/rbc-runs/output2/working/pipeline_RBCv0/cpac_pipeline_RBCv0_sub-PA001_ses-V1W1/_scan_REST_run-1/unifize_104/ref_bold_corrected_brain_masked.nii.gz
+    """
+    out = afni.v_3d_unifize(cl_frac=cl_frac, rbt=rbt, prefix="desc-uni.nii.gz", t2=True, in_file=input_image)
+    return out
